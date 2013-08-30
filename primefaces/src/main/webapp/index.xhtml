@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+	<h1>PrimeFaces Boolean CheckBox Test</h1>
+
+<p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel">  
+    <f:facet name="start">  
+        <h:graphicImage value="/img/ajax-loader.gif" />  
+    </f:facet>  
+      
+    <f:facet name="complete">  
+        <h:outputText value="" />  
+    </f:facet>  
+</p:ajaxStatus>  
+<br /><br /><br /><br /><br />
+<h:form>
+	    <h:outputText value="PrimeFaces Ajax" />
+		<p:dataTable value="#{testBean.invoices}" var="invoice1" >
+			<p:column headerText="id" style="width:15%">  
+	            <h:outputText value="#{invoice1.id}" />  
+	        </p:column>
+	        <p:column headerText="name" style="width:15%">  
+	            <h:outputText value="#{invoice1.name}" />  
+	        </p:column >
+	        <p:column headerText="Select Value" style="width:15%">
+	        	<p:selectBooleanCheckbox id="PrimeFacesChkBox" valueChangeListener="#{testBean.checkBoxListener}">
+					<f:attribute  name="invoiceObj" value="#{invoice1}" />	
+					<p:ajax event="valueChange" />
+				</p:selectBooleanCheckbox>
+	        </p:column>
+		</p:dataTable>
+	</h:form>
+	<br /><br /><br /><br />
+	<h:form>
+		<h:outputText value="JSF Ajax" />
+		<p:dataTable value="#{testBean.invoices}" var="invoice2">
+			<p:column headerText="id" style="width:15%">  
+	            <h:outputText value="#{invoice2.id}" />  
+	        </p:column>
+	        <p:column headerText="name" style="width:15%">  
+	            <h:outputText value="#{invoice2.name}" />  
+	        </p:column >
+	        <p:column headerText="Select Value" style="width:15%">
+	        	<p:selectBooleanCheckbox id="jsfChkBox" value="#{testBean.invoiceSelectedState}" valueChangeListener="#{testBean.checkBoxListener}">
+					<f:attribute  name="invoiceObj" value="#{invoice2}" />	
+					<f:ajax event="valueChange" />
+				</p:selectBooleanCheckbox>
+	        </p:column>
+		</p:dataTable>
+	</h:form>
+	
+	
+
+</h:body>
+</html>
