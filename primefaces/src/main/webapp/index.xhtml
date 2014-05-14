@@ -8,6 +8,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 </h:head>
 <h:body>
 	<h1>PrimeFaces Boolean CheckBox Test</h1>
@@ -22,6 +23,7 @@
     </f:facet>  
 </p:ajaxStatus>  
 <br /><br /><br /><br /><br />
+
 <h:form>
 	    <h:outputText value="PrimeFaces Ajax" />
 		<p:dataTable value="#{testBean.invoices}" var="invoice1" >
@@ -40,7 +42,7 @@
 		</p:dataTable>
 	</h:form>
 	<br /><br /><br /><br />
-	<h:form>
+	<h:form id="ajxForm">
 		<h:outputText value="JSF Ajax" />
 		<p:dataTable value="#{testBean.invoices}" var="invoice2">
 			<p:column headerText="id" style="width:15%">  
@@ -56,9 +58,24 @@
 				</p:selectBooleanCheckbox>
 	        </p:column>
 		</p:dataTable>
+		
+		<a onclick="testTheUrl()" >Click</a>
+		<h:outputText value="#{testBean.invoiceSelectedState}" />
 	</h:form>
 	
 	
+<script type="text/javascript">
+var value = "#{testBean}";
 
+
+function testTheUrl()
+{
+	
+console.log("Before Func call");
+#{testBean.testAjax()};
+console.log("After Func call");
+}	
+</script>
 </h:body>
+
 </html>

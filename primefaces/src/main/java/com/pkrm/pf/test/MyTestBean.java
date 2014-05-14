@@ -3,15 +3,15 @@
  */
 package com.pkrm.pf.test;
 
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.Properties;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
 
@@ -21,12 +21,17 @@ import javax.faces.event.ValueChangeEvent;
  */
 @ManagedBean(name = "testBean")
 @ViewScoped
-public class MyTestBean {
+public class MyTestBean implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5414304330818613395L;
 	private boolean invoiceSelectedState;
 	private List<MobileInvoice>selectedInvoices;
 	private List<MobileInvoiceDAO> invoices;
 	private MobileInvoice singleInvoiceObj;
+	private Properties props = new Properties();
 
 	/**
 	 * 
@@ -34,6 +39,9 @@ public class MyTestBean {
 	public MyTestBean() {
 		// TODO Auto-generated constructor stub
 		System.out.println("Inside Constructor");
+		
+		 
+    	
 	}
 	
 	@PostConstruct
@@ -126,6 +134,26 @@ public class MyTestBean {
 	 */
 	public void setSingleInvoiceObj(MobileInvoice singleInvoiceObj) {
 		this.singleInvoiceObj = singleInvoiceObj;
+	}
+	
+	/**
+	 * @return the props
+	 */
+	public Properties getProps() {
+		return props;
+	}
+
+	/**
+	 * @param props the props to set
+	 */
+	public void setProps(Properties props) {
+		this.props = props;
+	}
+
+	public String testAjax(){
+		
+		 System.out.println("Calling test Ajaz function from Bean");
+		 return "Returning from Bean";
 	}
 
 	
